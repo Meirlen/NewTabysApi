@@ -89,7 +89,6 @@ def create_expert(
         # Клиент должен отправить поле 'experience' как JSON-строку
         avatar: Optional[UploadFile] = File(None),
         db: Session = Depends(get_db),
-        # current_user=Depends(get_current_user) # Если используется
 ):
     """
     Создание нового эксперта.

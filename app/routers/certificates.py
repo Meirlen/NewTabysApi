@@ -72,7 +72,7 @@ def get_certificate_details(
     return certificate
 
 
-@router.post("/", response_model=Certificate, status_code=status.HTTP_201_CREATED)
+@router.post("", response_model=Certificate, status_code=status.HTTP_201_CREATED)
 async def create_certificate(
         # Убираем user_id из параметров, так как будем определять его из токена
         title: str = Form(...),
