@@ -29,7 +29,7 @@ AVATAR_UPLOAD_DIR = "./static/avatars/experts" # Путь относительн
 os.makedirs(AVATAR_UPLOAD_DIR, exist_ok=True) # Создать каталог, если он не существует
 
 
-@router.get("/", response_model=List[ExpertList])
+@router.get("", response_model=List[ExpertList])
 def list_experts(
         skip: int = 0,
         limit: int = 100,
