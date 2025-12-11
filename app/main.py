@@ -29,17 +29,10 @@ origins = [
     "http://localhost:3000",
     "http://localhost:3001",
     "http://localhost:8000",
-    "https://example.com",
-    # Добавьте другие разрешенные источники
+    "https://saryarqajastary.kz",  # ← ВАШ ПРОДАКШН ДОМЕН
+    "http://saryarqajastary.kz",  # ← На случай если есть HTTP версия
+    "https://www.saryarqajastary.kz",  # ← С www если есть    # Добавьте другие разрешенные источники
 ]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 # Включение маршрутов
 app.include_router(experts.router)
