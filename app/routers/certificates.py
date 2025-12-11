@@ -18,6 +18,7 @@ CERTIFICATES_DIR = "uploads/certificates"
 os.makedirs(CERTIFICATES_DIR, exist_ok=True)
 
 
+
 @router.get("/", response_model=List[Certificate])
 def list_certificates(
         skip: int = 0,
