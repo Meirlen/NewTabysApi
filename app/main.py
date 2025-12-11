@@ -14,7 +14,9 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI(
     title="Experts Platform API",
     description="API для работы с экспертами на платформе",
-    version="2.0.0"
+    version="2.0.0",
+    redirect_slashes=False  # Добавьте эту опцию
+
 )
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -48,7 +50,8 @@ def read_root():
     return {
         "message": "Добро пожаловать в API платформы экспертов",
         "version": "2.0.0",
-        "documentation": "/docs"
+        "documentation": "/docs",
+
     }
 
 # Запуск приложения, если файл запущен напрямую

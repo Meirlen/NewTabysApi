@@ -19,7 +19,7 @@ os.makedirs(CERTIFICATES_DIR, exist_ok=True)
 
 
 
-@router.get("/", response_model=List[Certificate])
+@router.get("", response_model=List[Certificate])
 def list_certificates(
         skip: int = 0,
         limit: int = 20,
