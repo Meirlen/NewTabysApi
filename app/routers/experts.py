@@ -74,7 +74,7 @@ def get_expert_details(expert_id: int, db: Session = Depends(get_db)):
     return expert
 
 import json
-@router.post("/", response_model=ExpertDetail, status_code=status.HTTP_201_CREATED)
+@router.post("", response_model=ExpertDetail, status_code=status.HTTP_201_CREATED)
 def create_expert(
         # Явно указываем, что поля приходят из формы
         full_name: str = Form(...),
