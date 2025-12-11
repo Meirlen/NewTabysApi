@@ -24,20 +24,11 @@ app.mount("/courses", StaticFiles(directory="uploads"), name="uploads")
 
 
 # Настройка CORS
-origins = [
-    "http://localhost",
-    "http://localhost:3000",
-    "http://localhost:3001",
-    "http://localhost:8000",
-    "https://saryarqajastary.kz",
-    "http://saryarqajastary.kz",
-    "https://www.saryarqajastary.kz",
-]
 
-# ВОТ ЭТО ВЫ УДАЛИЛИ - НУЖНО ВЕРНУТЬ!
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],  # Временно для теста
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
