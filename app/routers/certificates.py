@@ -29,14 +29,6 @@ def list_certificates(
     Получение списка сертификатов
     """
 
-    return db.query(Certificate) \
-        .offset(skip) \
-        .limit(limit) \
-        .all()
-    # Проверка прав доступа (обычные пользователи видят только свои сертификаты)
-    if not current_user.is_admin:
-        return crud.get_user_certificates(db, user_id=current_user.id, skip=skip, limit=limit)
-
     return crud.get_certificates(db, status=status, skip=skip, limit=limit)
 
 
