@@ -16,7 +16,7 @@ app = FastAPI(
     description="API для работы с экспертами на платформе",
     version="2.0.0"
 )
-# app.mount("/static", StaticFiles(directory="static"), name="static")
+
 app.mount("/static", StaticFiles(directory="static"), name="static")
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 app.mount("/certificates", StaticFiles(directory="uploads"), name="uploads")
@@ -29,10 +29,19 @@ origins = [
     "http://localhost:3000",
     "http://localhost:3001",
     "http://localhost:8000",
-    "https://saryarqajastary.kz",  # ← ВАШ ПРОДАКШН ДОМЕН
-    "http://saryarqajastary.kz",  # ← На случай если есть HTTP версия
-    "https://www.saryarqajastary.kz",  # ← С www если есть    # Добавьте другие разрешенные источники
+    "https://saryarqajastary.kz",
+    "http://saryarqajastary.kz",
+    "https://www.saryarqajastary.kz",
 ]
+
+# ВОТ ЭТО ВЫ УДАЛИЛИ - НУЖНО ВЕРНУТЬ!
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Включение маршрутов
 app.include_router(experts.router)
@@ -55,7 +64,3 @@ def read_root():
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", "8000"))
     uvicorn.run("app.main:app", host="0.0.0.0", port=port, reload=True)
-
-#Запуск:
-# uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
-
