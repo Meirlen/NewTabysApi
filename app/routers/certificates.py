@@ -24,11 +24,15 @@ def list_certificates(
         limit: int = 20,
         status: Optional[str] = None,
         db: Session = Depends(get_db),
-        current_user=Depends(get_current_user)
 ):
     """
     Получение списка сертификатов
     """
+
+    return db.query(Certificate) \
+        .offset(skip) \
+        .limit(limit) \
+        .all()
     # Проверка прав доступа (обычные пользователи видят только свои сертификаты)
     if not current_user.is_admin:
         return crud.get_user_certificates(db, user_id=current_user.id, skip=skip, limit=limit)
